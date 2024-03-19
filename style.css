@@ -1,0 +1,173 @@
+:root{
+  --bg: hsl(0, 0%, 90%);
+  --ws: white;
+  --bs: rgba(0, 0, 0, 0.15);
+  --clr: #393939;
+}
+
+.dark-theme {
+  --bg: hsl(0, 0%, 20%);
+  --ws: black;
+  --bs: rgba(255,255,255, 0.1);
+  --clr : #888787;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    min-height: 100vh;
+    background-color: var(--bg);
+}
+
+.container{
+    position: relative;
+}
+
+.clock{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:  var(--bg);;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  box-shadow: -3px -3px 7px var(--ws),
+              3px 3px 5px var(--bs);
+} 
+
+.clock:before{
+  position: absolute;
+  content: '';
+  height: 220px;
+  width: 220px;
+  background:  var(--bg);;
+  border-radius: 50%;
+  box-shadow: inset -3px -3px 7px var(--ws),
+              inset 3px 3px 5px  var(--bs);
+}
+  
+.clock:after{
+    position: absolute;
+    content: '';
+    height: 120px;
+    width: 120px;
+    background:  var(--bg);
+    border-radius: 50%;
+    box-shadow: -1px -1px 5px var(--ws),
+                1px 1px 3px rgba(94,104,121,0.288);
+}
+
+.clock span{
+    position: absolute;
+    transform: rotate(calc(30deg * var(--i))); 
+    inset: 20px;
+    text-align: center;
+}
+
+.clock span b{
+    position: absolute;
+    width: 2px;
+    height: 5px;
+    background: #404040;
+}
+
+.hand{ 
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 2;
+} 
+
+.hand i{
+    position: absolute;
+    background-color: var(--clr);
+    width: 4px;
+    height: var(--h);
+    border-radius: 8px;   
+}
+
+.clock .center-nut{
+    height: 15px;
+    width: 15px;
+    background: #404040;
+    border-radius: 50%;
+    z-index: 2;
+    position: absolute;
+  }
+.clock .center-nut2{
+  height: 9px;
+  width: 9px;
+  background: #3498db;
+  border-radius: 50%;
+  z-index: 15;
+  position: absolute;
+}
+
+.clock span:nth-child(6) b,
+.clock span:nth-child(9) b,
+.clock span:nth-child(12) b,
+.clock span:nth-child(15) b{
+  background:  #3498db;
+}
+
+
+/* ========= darkmode-toggle ==========*/
+.mode-switch label {
+  width: 50px;
+  height: 20px;
+  position: relative;
+  display: block;
+  background: hsl(0, 0%, 55%);
+  border-radius: 20px;
+  box-shadow:  -3px -3px 5px hsl(0, 0%, 60%),  5px 5px 7px var(--ws);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mode-switch label::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  background: var(--bg);
+  background: linear-gradient( 180deg, rgb(135, 135, 135), rgb(190, 190, 190));
+  /* box-shadow(inset) used to color the toogle circle alogn with bcg */
+  box-shadow: inset 3px -3px 7px hsl(0, 0%, 35%),
+  inset -3px 3px 7px white;
+  border-radius: 180px;
+  transition: 0.3s;
+}
+.mode-switch input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+.mode-switch input:checked + label {
+  background: #242424;
+  box-shadow: -3px -3px 7px var(--ws),
+              3px 3px 5px var(--bs);
+}
+
+.mode-switch input:checked + label::after {
+  /* left 490px = which places out of the box*/
+  left: 49px;
+  /* and translate -100% moves inside the box */
+  transform: translateX(-100%);
+  background: linear-gradient( 180deg, rgb(119, 119, 119), rgb(58, 58, 58));
+   /* box-shadow(inset) used to color the toogle circle alogn with bcg */
+  box-shadow: inset -3px -3px 7px var(--ws),
+              inset 3px 3px 5px var(--bs);
+}
+
+.mode-switch label:active::after {
+  width: 26px;
+}
+/* ========= darkmode-toggle ==========*/
+/* =================================== */
